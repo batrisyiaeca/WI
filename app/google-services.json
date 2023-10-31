@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1098717296805",
+    "project_id": "wellnessinsight-b4fdd",
+    "storage_bucket": "wellnessinsight-b4fdd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098717296805:android:96814ff44065ddfeccb54c",
+        "android_client_info": {
+          "package_name": "com.example.wi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANz3QWXMngMoEvp8KXw_xd876RmXDCPuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
