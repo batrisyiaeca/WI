@@ -39,7 +39,7 @@ public class register extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
 
         if(fAuth.getCurrentUser() != null) {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), home.class));
             finish();
         }
 
@@ -72,13 +72,21 @@ public class register extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             Toast.makeText(register.this, "User Created.", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(register.this, MainActivity.class));
+                            startActivity(new Intent(register.this, home.class));
                         } else {
-                            Toast.makeText(register.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(register.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
             }
         });
+
+         mLoginBtn.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 startActivity(new Intent(register.this, login.class));
+             }
+         });
     }
 }
