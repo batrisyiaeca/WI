@@ -10,20 +10,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.OnFailureListener;
-
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,9 +32,10 @@ public class register extends AppCompatActivity {
     TextView mLoginBtn;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
-    FirebaseFirestore fStore; // Move fStore declaration here
+    FirebaseFirestore fStore;
     String userID;
-    private static final String TAG = "register"; // Added TAG constant
+    private static final String TAG = "register";
+    private static final String DEFAULT_ROLE = "member";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +50,7 @@ public class register extends AppCompatActivity {
         mLoginBtn = findViewById(R.id.createText);
         progressBar = findViewById(R.id.progressBar);
         fAuth = FirebaseAuth.getInstance();
-        fStore = FirebaseFirestore.getInstance(); // Initialize fStore
+        fStore = FirebaseFirestore.getInstance();
 
         if (fAuth.getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(), home.class));
@@ -81,14 +80,12 @@ public class register extends AppCompatActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
 
-                // Register the user in Firebase
                 fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    public void onComplete(@NonNull com.google.android.gms.tasks.Task<AuthResult> task) {
                         progressBar.setVisibility(View.GONE);
 
                         if (task.isSuccessful()) {
-                            // Send a verification link
                             FirebaseUser fuser = fAuth.getCurrentUser();
                             fuser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
@@ -109,9 +106,11 @@ public class register extends AppCompatActivity {
                             user.put("fName", fullName);
                             user.put("email", email);
                             user.put("phone", phone);
+                            user.put("role", DEFAULT_ROLE); // Set default role
+
                             documentReference.set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
-                                public void onComplete(@NonNull Task<Void> task) {
+                                public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Log.d(TAG, "onSuccess: user Profile is created for " + userID);
                                         startActivity(new Intent(register.this, home.class));
