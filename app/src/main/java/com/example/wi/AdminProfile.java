@@ -38,6 +38,7 @@ import java.util.List;
 
 public class AdminProfile extends AppCompatActivity {
     TextView fullName, email, adminRole;
+    ImageView getAddMemberImageView;
     FirebaseAuth fAuth;
     FirebaseFirestore fstore;
     String userID;
@@ -59,6 +60,17 @@ public class AdminProfile extends AppCompatActivity {
         resetPassLocal = findViewById(R.id.resetPasswordLocal);
         profileImage = findViewById(R.id.profileImage);
         changeProfileImage = findViewById(R.id.changeProfile);
+
+        View addMember = findViewById(R.id.addmember);
+        
+        addMember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle button click
+                Intent intent = new Intent(AdminProfile.this, ManageAdmin.class);
+                startActivity(intent);
+            }
+        });
 
         linearView = findViewById(R.id.linearView);
 
@@ -163,7 +175,7 @@ public class AdminProfile extends AppCompatActivity {
 
         if ("admin".equals(userRole) || "manager".equals(userRole)) {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            Query query = db.collection("users").whereEqualTo("role", "member");
+            Query query = db.collection("users").whereEqualTo("role", "admin");
 
             query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
@@ -211,11 +223,5 @@ public class AdminProfile extends AppCompatActivity {
         // Replace this with your actual logic to get the user's role
         // For testing purposes, return "admin" here
         return "admin";
-    }
-
-    public void logout(View view) {
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        finish();
     }
 }

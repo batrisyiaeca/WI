@@ -68,7 +68,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.199"
-        tools:srcCompat="@tools:sample/avatars[3]" />
+        android:src="@drawable/profile2" />
 
     <TextView
         android:id="@+id/verifyMsg"
@@ -111,20 +111,6 @@
         app:layout_constraintVertical_bias="0.866" />
 
     <Button
-        android:id="@+id/logoutBtn"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#009688"
-        android:text="Log Out"
-        android:onClick="logout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.96" />
-
-    <Button
         android:id="@+id/changeProfile"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
@@ -139,16 +125,16 @@
 
     <Button
         android:id="@+id/deleteBtn"
-        android:layout_width="170dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#C80B0B"
         android:text="Delete Profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.96" />
+        app:layout_constraintVertical_bias="0.954" />
 
     <TextView
         android:id="@+id/textView"

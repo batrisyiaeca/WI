@@ -1,11 +1,13 @@
 package com.example.wi;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,15 +34,30 @@ public class home extends AppCompatActivity {
         userID = fAuth.getCurrentUser().getUid();
         user = fAuth.getCurrentUser();
 
-        Button profileButton = findViewById(R.id.profileBtn);
+        // Find the CardView, ImageView, and TextView by their IDs
+        CardView profileCardView = findViewById(R.id.profileCardView);
+        ImageView profileImageView = findViewById(R.id.profileImageView);
+        TextView profileTextView = findViewById(R.id.profileTextView);
 
-        profileButton.setOnClickListener(new View.OnClickListener() {
+        CardView logoutCardView = findViewById(R.id.logoutCardView);
+        ImageView logoutImageView = findViewById(R.id.logoutimageView);
+        TextView logoutTextView = findViewById(R.id.logoutTextView);
+
+        profileCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("ButtonClick", "Button clicked");
+                Log.d("ButtonClick", "Profile Card clicked");
 
                 // Fetch the user's role from Firestore
                 fetchUserRole();
+            }
+        });
+
+        logoutCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("ButtonClick", "Logout Card clicked");
+                logoutUser();
             }
         });
     }
@@ -84,5 +101,13 @@ public class home extends AppCompatActivity {
             // Handle the case where userId is null
             Log.e("UserIDError", "User ID is null");
         }
+    }
+
+    private void logoutUser() {
+        fAuth.signOut();
+        Intent intent = new Intent(home.this, MainActivity.class); // Replace LoginActivity with the actual login activity class
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 }
