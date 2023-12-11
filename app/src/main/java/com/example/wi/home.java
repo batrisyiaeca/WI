@@ -81,9 +81,9 @@ public class home extends AppCompatActivity {
                                     // If the user's role is 'member', go to the member page
                                     Intent intent = new Intent(home.this, profile.class);
                                     startActivity(intent);
-                                } else if ("manager".equals(userRole) || "admin".equals(userRole)) {
+                                } else if ("manager".equals(userRole)) {
                                     // If the user's role is 'manager' or 'admin', go to the AdminProfile page
-                                    Intent intent = new Intent(home.this, AdminProfile.class);
+                                    Intent intent = new Intent(home.this, profile.class);
                                     startActivity(intent);
                                 } else {
                                     Log.w("UserRole", "Unknown user role: " + userRole);

@@ -48,7 +48,7 @@
 
     <EditText
         android:id="@+id/Email"
-        android:layout_width="386dp"
+        android:layout_width="350dp"
         android:layout_height="47dp"
         android:ems="10"
         android:hint="Email"
@@ -62,11 +62,11 @@
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="386dp"
+        android:layout_width="350dp"
         android:layout_height="47dp"
         android:ems="10"
-        android:inputType="textPassword"
         android:hint="Password"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.36"

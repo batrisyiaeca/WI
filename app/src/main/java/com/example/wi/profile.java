@@ -36,9 +36,9 @@ public class profile extends AppCompatActivity {
     FirebaseAuth fAuth;
     FirebaseFirestore fstore;
     String userID;
-    Button resendCode, resetPassLocal, changeProfileImage;
+    Button resendCode, resetPassLocal, changeProfileImage, deleteProfile;
     FirebaseUser user;
-    ImageView profileImage;
+    ImageView profileImage, backIV;
     StorageReference storageReference;
 
     @Override
@@ -46,7 +46,6 @@ public class profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        phone = findViewById(R.id.profilePhone);
         fullName = findViewById(R.id.profileName);
         email = findViewById(R.id.profileEmail);
         resetPassLocal = findViewById(R.id.resetPasswordLocal);
@@ -54,6 +53,8 @@ public class profile extends AppCompatActivity {
         changeProfileImage = findViewById(R.id.changeProfile);
         resendCode = findViewById(R.id.resendcode);
         verifyMsg = findViewById(R.id.verifyMsg);
+        backIV = findViewById(R.id.backIV);
+        deleteProfile = findViewById(R.id.deleteBtn);
 
         fAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
@@ -61,6 +62,14 @@ public class profile extends AppCompatActivity {
 
         userID = fAuth.getCurrentUser().getUid();
         user = fAuth.getCurrentUser();
+
+        backIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Redirect to dashboard
+                startActivity(new Intent(getApplicationContext(), home.class));
+            }
+        });
 
         StorageReference profileRef = storageReference.child("users/" + userID + "/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -84,23 +93,29 @@ public class profile extends AppCompatActivity {
             }
         });
 
+        deleteProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDeleteProfileDialog();
+            }
+        });
+
         changeProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(profile.this, EditProfile.class);
                 i.putExtra("fullName", fullName.getText().toString());
                 i.putExtra("email", email.getText().toString());
-                i.putExtra("phone", phone.getText().toString());
                 startActivity(i);
             }
         });
+
 
         DocumentReference documentReference = fstore.collection("users").document(userID);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 if (documentSnapshot != null && documentSnapshot.exists()) {
-                    phone.setText(documentSnapshot.getString("phone"));
                     fullName.setText(documentSnapshot.getString("fName"));
                     email.setText(documentSnapshot.getString("email"));
 
@@ -108,9 +123,11 @@ public class profile extends AppCompatActivity {
                     if (user != null && user.isEmailVerified()) {
                         verifyMsg.setText("Email Verified");
                         resendCode.setVisibility(View.GONE);
+                        resendCode.setEnabled(false); // Disable the button
                     } else {
                         verifyMsg.setText("Email Not Verified. Click Resend Code to verify.");
                         resendCode.setVisibility(View.VISIBLE);
+                        resendCode.setEnabled(true); // Enable the button
                     }
                 }
             }
@@ -149,7 +166,11 @@ public class profile extends AppCompatActivity {
                     user.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            Toast.makeText(profile.this, "Password Reset Successfully", Toast.LENGTH_SHORT).show();
+                            // Password Reset Successfully
+                            // Firebase will automatically send a confirmation email
+                            Toast.makeText(profile.this, "Password Reset Successfully.", Toast.LENGTH_SHORT).show();
+                            FirebaseAuth.getInstance().signOut(); // Sign out the user after password change
+                            startActivity(new Intent(profile.this, MainActivity.class)); // Redirect to login screen
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -170,5 +191,66 @@ public class profile extends AppCompatActivity {
         });
 
         passwordResetDialog.show(); // Show the dialog
+    }
+
+    private void showDeleteProfileDialog() {
+        AlertDialog.Builder deleteProfileDialog = new AlertDialog.Builder(this);
+        deleteProfileDialog.setTitle("Delete Profile");
+        deleteProfileDialog.setMessage("Are you sure you want to delete your profile?");
+
+        deleteProfileDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Perform deletion
+                deleteProfile();
+            }
+        });
+
+        deleteProfileDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Close dialog
+                dialog.dismiss();
+            }
+        });
+
+        deleteProfileDialog.show();
+    }
+
+    private void deleteProfile() {
+        // Delete profile data in Firestore
+        fstore.collection("users").document(userID).delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Delete profile image in storage (if applicable)
+                        StorageReference profileImageRef = storageReference.child("users/" + userID + "/profile.jpg");
+                        profileImageRef.delete();
+
+                        // Delete user account in Firebase Authentication
+                        user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Sign out and navigate to login or home screen
+                                FirebaseAuth.getInstance().signOut();
+                                startActivity(new Intent(profile.this, MainActivity.class));
+                                finish();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Handle failure
+                                Toast.makeText(profile.this, "Failed to delete account.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Handle failure
+                        Toast.makeText(profile.this, "Failed to delete profile data.", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

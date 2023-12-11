@@ -33,7 +33,7 @@ public class EditProfile extends AppCompatActivity {
 
     public static final String TAG = "TAG";
     EditText profileFullName, profileEmail, profilePhone;
-    ImageView profileImageView;
+    ImageView profileImageView, backIV;
     Button saveBtn;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
@@ -44,11 +44,11 @@ public class EditProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+        backIV = findViewById(R.id.backIV1);
 
         Intent data = getIntent();
         String fullName = data.getStringExtra("fullName");
         String email = data.getStringExtra("email");
-        String phone = data.getStringExtra("phone");
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -57,9 +57,16 @@ public class EditProfile extends AppCompatActivity {
 
         profileFullName = findViewById(R.id.profileFullName);
         profileEmail = findViewById(R.id.profileEmailAddress);
-        profilePhone = findViewById(R.id.profilePhoneNo);
         profileImageView = findViewById(R.id.profileImageView);
         saveBtn = findViewById(R.id.saveProfileInfo);
+
+        backIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Redirect to dashboard
+                startActivity(new Intent(getApplicationContext(), profile.class));
+            }
+        });
 
         StorageReference profileRef = storageReference.child("users/" + fAuth.getCurrentUser().getUid() + "/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -80,7 +87,7 @@ public class EditProfile extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (profileFullName.getText().toString().isEmpty() || profileEmail.getText().toString().isEmpty() || profilePhone.getText().toString().isEmpty()) {
+                if (profileFullName.getText().toString().isEmpty() || profileEmail.getText().toString().isEmpty()) {
                     Toast.makeText(EditProfile.this, "One or More fields are empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -93,7 +100,6 @@ public class EditProfile extends AppCompatActivity {
                         Map<String, Object> edited = new HashMap<>();
                         edited.put("email", newEmail);
                         edited.put("fName", profileFullName.getText().toString());
-                        edited.put("phone", profilePhone.getText().toString());
 
                         docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -115,9 +121,8 @@ public class EditProfile extends AppCompatActivity {
 
         profileEmail.setText(email);
         profileFullName.setText(fullName);
-        profilePhone.setText(phone);
 
-        Log.d(TAG, "onCreate: " + fullName + " " + email + " " + phone);
+        Log.d(TAG, "onCreate: " + fullName + " " + email);
     }
 
     @Override

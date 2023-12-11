@@ -45,7 +45,6 @@ public class register extends AppCompatActivity {
         mFullName = findViewById(R.id.fullName);
         mEmail = findViewById(R.id.Email);
         mPassword = findViewById(R.id.password);
-        mPhone = findViewById(R.id.phone);
         mRegisterBtn = findViewById(R.id.registerBtn);
         mLoginBtn = findViewById(R.id.createText);
         progressBar = findViewById(R.id.progressBar);
@@ -63,7 +62,6 @@ public class register extends AppCompatActivity {
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
                 String fullName = mFullName.getText().toString();
-                String phone = mPhone.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
                     mEmail.setError("Email is required.");
@@ -105,7 +103,6 @@ public class register extends AppCompatActivity {
                             Map<String, Object> user = new HashMap<>();
                             user.put("fName", fullName);
                             user.put("email", email);
-                            user.put("phone", phone);
                             user.put("role", DEFAULT_ROLE); // Set default role
 
                             documentReference.set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
