@@ -157,41 +157,47 @@ public class profile extends AppCompatActivity {
         passwordResetDialog.setMessage("Enter New Password > 6 characters long");
         passwordResetDialog.setView(resetPassword);
 
-        passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        resetPassLocal.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Reset password
-                String newPassword = resetPassword.getText().toString();
-                if (user != null) {
-                    user.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            // Password Reset Successfully
-                            // Firebase will automatically send a confirmation email
-                            Toast.makeText(profile.this, "Password Reset Successfully.", Toast.LENGTH_SHORT).show();
-                            FirebaseAuth.getInstance().signOut(); // Sign out the user after password change
-                            startActivity(new Intent(profile.this, MainActivity.class)); // Redirect to login screen
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(profile.this, "Password Reset Failed", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
+            public void onClick(View v) {
+                final EditText resetMail = new EditText(v.getContext());
+                AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
+                passwordResetDialog.setTitle("Reset password?");
+                passwordResetDialog.setMessage("Enter your email to receive a reset link");
+                passwordResetDialog.setView(resetMail);
+
+                passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Extract email and send reset link
+                        String mail = resetMail.getText().toString();
+                        fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(profile.this, "Reset Link Sent to your Email", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(profile.this, "Error! Reset Link is Not Sent" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+
+                passwordResetDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Close dialog
+                        dialog.dismiss();
+                    }
+                });
+
+                passwordResetDialog.show(); // Show the dialog
             }
         });
-
-        passwordResetDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Close dialog
-                dialog.dismiss();
-            }
-        });
-
-        passwordResetDialog.show(); // Show the dialog
     }
+
 
     private void showDeleteProfileDialog() {
         AlertDialog.Builder deleteProfileDialog = new AlertDialog.Builder(this);
