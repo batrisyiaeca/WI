@@ -29,9 +29,14 @@
         <activity
             android:name=".register"
             android:exported="false" />
+        <activity android:name=".UserHomeActivity"
+            android:exported="false" />
+        <activity android:name=".AdminHomeActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

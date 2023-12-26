@@ -14,6 +14,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.w3c.dom.Text;
+
 public class home extends AppCompatActivity {
 
     String userID;
@@ -43,6 +45,20 @@ public class home extends AppCompatActivity {
         ImageView logoutImageView = findViewById(R.id.logoutimageView);
         TextView logoutTextView = findViewById(R.id.logoutTextView);
 
+        CardView supplementCardView = findViewById(R.id.suppCardView);
+
+
+        supplementCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("ButtonClick", "Supplement Card clicked");
+
+                // Start the UserHomeActivity when the supplement button is clicked
+                Intent intent = new Intent(home.this, UserHomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
         profileCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +76,9 @@ public class home extends AppCompatActivity {
                 logoutUser();
             }
         });
+
+
+
     }
 
     private void fetchUserRole() {
@@ -102,6 +121,7 @@ public class home extends AppCompatActivity {
             Log.e("UserIDError", "User ID is null");
         }
     }
+
 
     private void logoutUser() {
         fAuth.signOut();

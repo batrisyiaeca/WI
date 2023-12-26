@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="for_btn">#e4e4e4</color>
+    <color name="floating_btn">#799b7e</color>
 </resources>
