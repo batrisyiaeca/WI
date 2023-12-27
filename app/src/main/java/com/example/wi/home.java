@@ -53,9 +53,8 @@ public class home extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("ButtonClick", "Supplement Card clicked");
 
-                // Start the UserHomeActivity when the supplement button is clicked
-                Intent intent = new Intent(home.this, UserHomeActivity.class);
-                startActivity(intent);
+                // Fetch the user's role for the supplement page
+                fetchUserSupplementRole();
             }
         });
 
@@ -103,6 +102,45 @@ public class home extends AppCompatActivity {
                                 } else if ("manager".equals(userRole)) {
                                     // If the user's role is 'manager' or 'admin', go to the AdminProfile page
                                     Intent intent = new Intent(home.this, profile.class);
+                                    startActivity(intent);
+                                } else {
+                                    Log.w("UserRole", "Unknown user role: " + userRole);
+                                    // Handle the case where the user role is unknown
+                                }
+                            } else {
+                                Log.e("FirestoreError", "Document does not exist or is null");
+                            }
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.e("FirestoreError", "Error fetching user role", e);
+                    });
+        } else {
+            // Handle the case where userId is null
+            Log.e("UserIDError", "User ID is null");
+        }
+    }
+
+    private void fetchUserSupplementRole() {
+        String userId = fAuth.getCurrentUser().getUid();
+
+        if (userId != null) {
+            fstore.collection("users").document(userId).get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document != null && document.exists()) {
+                                String userRole = document.getString("role");
+                                Log.d("UserRole", "User role: " + userRole);
+
+                                // Check the user's role and navigate accordingly
+                                if ("member".equals(userRole)) {
+                                    // If the user's role is 'member' or 'manager', go to the Supplement page
+                                    Intent intent = new Intent(home.this, UserHomeActivity.class);
+                                    startActivity(intent);
+                                } else if ("manager".equals(userRole)) {
+                                    // If the user's role is 'manager' or 'admin', go to the AdminProfile page
+                                    Intent intent = new Intent(home.this, AdminHomeActivity.class);
                                     startActivity(intent);
                                 } else {
                                     Log.w("UserRole", "Unknown user role: " + userRole);

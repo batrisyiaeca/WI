@@ -31,8 +31,15 @@
             android:exported="false" />
         <activity android:name=".UserHomeActivity"
             android:exported="false" />
+        <activity android:name=".UserSupplementDetailActivity"
+            android:exported="false" />
         <activity android:name=".AdminHomeActivity"
             android:exported="false" />
+        <activity android:name=".AdminAddSupplementActivity"
+            android:exported="false" />
+        <activity android:name=".AdminUpdateSupplementActivity"
+            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -43,6 +50,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

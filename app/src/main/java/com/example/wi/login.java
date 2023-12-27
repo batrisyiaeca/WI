@@ -88,6 +88,7 @@ public class login extends AppCompatActivity {
             }
         });
 
+
         forgotTextLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,36 +101,17 @@ public class login extends AppCompatActivity {
                 passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // Extract email and check if it exists
+                        // Extract email and send reset link
                         String mail = resetMail.getText().toString();
-
-                        // Check if email exists
-                        fAuth.fetchSignInMethodsForEmail(mail).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                        fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
-                            public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-                                if (task.isSuccessful()) {
-                                    SignInMethodQueryResult result = task.getResult();
-                                    if (result.getSignInMethods().isEmpty()) {
-                                        // Email does not exist
-                                        Toast.makeText(login.this, "Email does not exist in the database", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        // Email exists, send reset link
-                                        fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
-                                                Toast.makeText(login.this, "Reset Link Sent to your Email", Toast.LENGTH_SHORT).show();
-                                            }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(login.this, "Error! Reset Link is Not Sent" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                                    }
-                                } else {
-                                    // Handle the exception if needed
-                                    Toast.makeText(login.this, "Error checking email existence", Toast.LENGTH_SHORT).show();
-                                }
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(login.this, "Reset Link Sent to your Email", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(login.this, "Error! Reset Link is Not Sent" + e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -148,3 +130,4 @@ public class login extends AppCompatActivity {
         });
     }
 }
+
