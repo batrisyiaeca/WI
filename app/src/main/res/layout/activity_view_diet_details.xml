@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Back Arrow Button -->
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:layout_margin="16dp"/>
+
+    <!-- Diet Guide Header -->
+    <TextView
+        android:id="@+id/dietGuideHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/backButton"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Diet Guide"
+        android:textSize="24sp" />
+
+    <!-- Diet Showcase (Breakfast, Lunch, Dinner) -->
+    <TextView
+        android:id="@+id/breakfastText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Breakfast"
+        android:textSize="18sp"
+        android:layout_below="@id/dietGuideHeader"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Intake Recommendation for Breakfast -->
+    <TextView
+        android:id="@+id/breakfastRecommendation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Insert"
+        android:layout_below="@id/breakfastText"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Lunch -->
+    <TextView
+        android:id="@+id/lunchText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Lunch"
+        android:textSize="18sp"
+        android:layout_below="@id/breakfastRecommendation"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Intake Recommendation for Lunch -->
+    <TextView
+        android:id="@+id/lunchRecommendation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Insert"
+        android:layout_below="@id/lunchText"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Dinner -->
+    <TextView
+        android:id="@+id/dinnerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Dinner"
+        android:textSize="18sp"
+        android:layout_below="@id/lunchRecommendation"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Intake Recommendation for Dinner -->
+    <TextView
+        android:id="@+id/dinnerRecommendation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Insert"
+        android:layout_below="@id/dinnerText"
+        android:layout_marginTop="8dp"/>
+
+    <Button
+        android:id="@+id/dietSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Next Diet"
+        android:layout_marginStart="16dp"
+        android:contentDescription="Show Next Diet"
+        android:layout_below="@id/dinnerRecommendation"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/addToFavouriteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Add to Favourite"
+        android:layout_below="@id/dietSwitch"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/editButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Edit"
+        android:layout_below="@id/addToFavouriteButton"
+        android:layout_marginTop="8dp"/>
+
+</RelativeLayout>
