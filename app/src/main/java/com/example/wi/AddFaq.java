@@ -80,49 +80,18 @@ public class AddFaq extends AppCompatActivity {
                 faqRef.child(faqID).setValue(faqHashmap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()) {
                         Toast.makeText(AddFaq.this, "FAQ Added", Toast.LENGTH_SHORT).show();
                         questionText.getText().clear();
                         answerText.getText().clear();
+                    } else {
+                        Toast.makeText(AddFaq.this, "Failed to add FAQ", Toast.LENGTH_SHORT).show();
+                    }
                     }
                 });
             }
         });
-
-        //loadAll();
-
-
     }
 }
 
 
-   /* private void loadAll() {
-        Query ref;
-
-        ref = FirebaseDatabase.getInstance().getReference("TestSupport");
-
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                faqModelList.clear();
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    FAQModel faqModel = ds.getValue(FAQModel.class);
-                    faqModelList.add(faqModel);
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-    private void addFAQ(String question, String answer) {
-        DatabaseReference faqRef = FirebaseDatabase.getInstance().getReference("TestSupport");
-        String faqId = faqRef.push().getKey();
-        FAQModel newFAQ = new FAQModel(faqId, question, answer);
-        //assert faqId != null;
-        faqRef.child(faqId).setValue(newFAQ);
-    }
-}*/
