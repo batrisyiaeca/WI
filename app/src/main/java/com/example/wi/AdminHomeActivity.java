@@ -2,6 +2,7 @@ package com.example.wi;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import java.util.List;
 public class AdminHomeActivity extends AppCompatActivity {
 
     FloatingActionButton add;
+    Button btnBack;
     RecyclerView recyclerView;
     AdminSupplementAdapter adminSupplementAdapter;
     List<SupplementModel> supplementModels;
@@ -31,8 +33,11 @@ public class AdminHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_home);
 
         add = findViewById(R.id.btnAdd);
+        btnBack = findViewById(R.id.btnBack);
 
         add.setOnClickListener(v -> startActivity(new Intent(AdminHomeActivity.this,AdminAddSupplementActivity.class)));
+
+        btnBack.setOnClickListener(v -> startActivity(new Intent(AdminHomeActivity.this,home.class)));
 
         recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
