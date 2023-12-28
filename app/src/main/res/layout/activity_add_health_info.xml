@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="ExtraText">
+
+    <!-- Back Arrow Button -->
+    <Button
+        android:id="@+id/backButtonHealthInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Back"
+        tools:ignore="HardcodedText" />
+
+    <!-- Add Info Header -->
+    <TextView
+        android:id="@+id/addInfoHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/backButtonHealthInfo"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Add Health Info"
+        android:textSize="24sp" />
+
+    <!-- Weight Input -->
+    <EditText
+        android:id="@+id/weightInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addInfoHeader"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Weight"
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        tools:ignore="TextContrastCheck" />
+
+    <!-- Height Input -->
+    <EditText
+        android:id="@+id/heightInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/weightInput"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Height"
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/bloodPressureInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/heightInput"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Blood Pressure"
+        android:inputType="text"
+        android:minHeight="48dp"
+        tools:ignore="TextContrastCheck" />
+
+    <!-- Heart Rate Input -->
+    <EditText
+        android:id="@+id/heartRateInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bloodPressureInput"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Heart Rate"
+        android:inputType="number"
+        android:minHeight="48dp"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/additionalInfoSlot1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/heartRateInput"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Additional Info Slot 1"
+        android:inputType="text"
+        android:minHeight="48dp"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/dateInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/additionalInfoSlot1"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Date"
+        android:inputType="date"
+        android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/btnSaveHealthInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dateInput"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:text="Confirm" />
+
+    <ImageView
+        android:id="@+id/healthInfoImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@{viewModel.imageUri}"
+        android:layout_below="@id/btnSaveHealthInfo"/>
+
+</RelativeLayout>
