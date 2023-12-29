@@ -8,10 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 public class UserGuide extends AppCompatActivity {
     Button videoBtn;
-    ImageButton backBtn;
+    ImageView backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

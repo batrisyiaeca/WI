@@ -5,7 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="6dp"
     android:elevation="6dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    android:clickable="false"
+    android:focusable="false"
+    android:id="@+id/cardView">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,7 +19,11 @@
             android:id="@+id/showQuestion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/bree_serif"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -26,7 +33,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/showQuestion"
-            android:layout_margin="10dp"
+            android:fontFamily="@font/bree_serif"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:textColor="@color/black"
             android:textSize="20sp" />
 

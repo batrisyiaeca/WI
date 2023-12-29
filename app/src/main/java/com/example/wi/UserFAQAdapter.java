@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wi.AdminFaqs;
@@ -41,6 +42,9 @@ public class UserFAQAdapter extends FirebaseRecyclerAdapter<FAQModel, UserFAQAda
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_view_faq, parent, false);
+        CardView cardView = view.findViewById(R.id.cardView);
+        cardView.setClickable(false);
+        cardView.setFocusable(false);
         return new MyHolder(view);
     }
 
@@ -59,7 +63,13 @@ public class UserFAQAdapter extends FirebaseRecyclerAdapter<FAQModel, UserFAQAda
             showQue = itemView.findViewById(R.id.showQuestion);
             showAns = itemView.findViewById(R.id.showAnswer);
 
+            // Check if the item is clickable before setting OnClickListener
+            if (!itemView.isClickable()) {
+                return;
+            }
+
             itemView.setOnClickListener(view -> {
+                // Your existing code for starting a new activity
                 Intent UserFaqActivity = new Intent(view.getContext(), AdminFaqs.class);
                 int position = getBindingAdapterPosition();
 

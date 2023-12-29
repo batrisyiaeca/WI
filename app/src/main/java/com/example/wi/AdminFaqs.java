@@ -7,13 +7,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class AdminFaqs extends AppCompatActivity {
-    ImageButton add, backBtn;
+    ImageButton add;
+    ImageView backBtn;
     AdminFAQAdapter adminFAQAdapter;
     RecyclerView recyclerView;
     DatabaseReference databaseReference;

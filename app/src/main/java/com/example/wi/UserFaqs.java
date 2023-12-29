@@ -7,13 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class UserFaqs extends AppCompatActivity {
-    ImageButton backBtn;
+    ImageView backBtn;
     UserFAQAdapter userFAQAdapter;
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
@@ -43,7 +44,7 @@ public class UserFaqs extends AppCompatActivity {
         backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(view -> startActivity(new Intent(UserFaqs.this, User_UserSupport.class)));
 
-        recyclerView = findViewById(R.id.rv);
+        recyclerView = findViewById(R.id.rv_u);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 

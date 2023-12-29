@@ -78,7 +78,6 @@ public class AdminAddSupplementActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String SupName = txtName.getText().toString().trim();
                 String SupVitamin = txtVitamin.getText().toString().trim();
                 String SupIngredient = txtIngredient.getText().toString().trim();
@@ -92,13 +91,15 @@ public class AdminAddSupplementActivity extends AppCompatActivity {
                     Toast.makeText(AdminAddSupplementActivity.this, "Please Enter Ingredient", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(SupDosage)){
                     Toast.makeText(AdminAddSupplementActivity.this, "Please Enter Dosage", Toast.LENGTH_SHORT).show();
+                } else if (image_uri == null) {
+                    // Show a dialog or a Toast message indicating that an image is required
+                    showImageRequiredDialog();
                 } else {
-                    uploadDate(SupName,SupVitamin,SupIngredient,SupDosage);
+                    uploadDate(SupName, SupVitamin, SupIngredient, SupDosage);
                 }
-
-
             }
         });
+
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -244,6 +245,20 @@ public class AdminAddSupplementActivity extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+    private void showImageRequiredDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Image Needed");
+        builder.setMessage("Please select an image for the supplement.");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // You can add any additional action needed when the user acknowledges the message
+            }
+        });
+        builder.create().show();
+    }
+
 
     @Override
     public void onBackPressed() {

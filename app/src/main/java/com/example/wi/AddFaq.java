@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,7 +32,7 @@ public class AddFaq extends AppCompatActivity {
     EditText questionText;
     EditText answerText;
     Button addFaq;
-    ImageButton backBtn;
+    ImageView backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +82,12 @@ public class AddFaq extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()) {
-                        Toast.makeText(AddFaq.this, "FAQ Added", Toast.LENGTH_SHORT).show();
-                        questionText.getText().clear();
-                        answerText.getText().clear();
-                    } else {
-                        Toast.makeText(AddFaq.this, "Failed to add FAQ", Toast.LENGTH_SHORT).show();
-                    }
+                            Toast.makeText(AddFaq.this, "FAQ Added", Toast.LENGTH_SHORT).show();
+                            questionText.getText().clear();
+                            answerText.getText().clear();
+                        } else {
+                            Toast.makeText(AddFaq.this, "Failed to add FAQ", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }

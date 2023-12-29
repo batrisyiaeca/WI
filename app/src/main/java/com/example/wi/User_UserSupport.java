@@ -3,6 +3,7 @@ package com.example.wi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +12,7 @@ public class User_UserSupport extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_user_support);
-        ImageButton userBackBtn = findViewById(R.id.backBtn);
+        ImageView userBackBtn = findViewById(R.id.backBtn);
         ImageButton userFaqBtn = findViewById(R.id.faqBtn);
         ImageButton userGuideBtn = findViewById(R.id.guideBtn);
 

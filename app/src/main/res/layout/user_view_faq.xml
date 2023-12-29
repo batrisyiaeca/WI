@@ -5,6 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="6dp"
     android:elevation="6dp"
+    android:clickable="false"
+    android:focusable="false"
+    android:id="@+id/cardView"
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
@@ -16,10 +19,14 @@
             android:id="@+id/showQuestion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/bree_serif"/>
 
         <TextView
             android:id="@+id/showAnswer"
@@ -28,7 +35,8 @@
             android:layout_below="@id/showQuestion"
             android:layout_margin="10dp"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:fontFamily="@font/bree_serif"/>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

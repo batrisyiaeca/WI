@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -38,6 +39,9 @@ public class AdminFAQAdapter extends FirebaseRecyclerAdapter<FAQModel, AdminFAQA
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.admin_view_faq, parent, false);
+        CardView cardView = view.findViewById(R.id.cardView);
+        cardView.setClickable(false);
+        cardView.setFocusable(false);
         return new MyHolder(view);
     }
 

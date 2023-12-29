@@ -7,7 +7,7 @@
     android:background="@drawable/bg"
     tools:context=".UserFaqs">
 
-    <ImageButton
+    <!--<ImageButton
         android:id="@+id/backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +20,18 @@
         app:layout_constraintEnd_toStartOf="@+id/textView5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/homeAsUpIndicator" />
+        app:srcCompat="?attr/homeAsUpIndicator" />-->
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="44dp"
+        android:layout_height="45dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/backicon" />
 
     <ImageButton
         android:id="@+id/addBtn"
@@ -48,6 +59,7 @@
         android:layout_marginBottom="664dp"
         android:text="FAQs"
         android:textSize="34sp"
+        android:fontFamily="@font/bree_serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -56,11 +68,13 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
+        android:id="@+id/rv_u"
         android:layout_width="350dp"
         android:layout_height="636dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:clickable="false"
+        android:focusable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

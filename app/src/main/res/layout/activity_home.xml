@@ -21,25 +21,31 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="24dp"
+            android:fontFamily="@font/bree_serif"
             android:text="DashBoard"
+            android:textColor="#009587"
             android:textSize="30sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:fontFamily="@font/bree_serif"
             android:text="Start your healthy life"
+            android:textColor="#009587"
+            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -73,6 +79,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
                         android:id="@+id/profileTextView"
                         android:layout_width="wrap_content"
@@ -80,8 +87,10 @@
                         android:layout_below="@id/profileImageView"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/bree_serif"
                         android:text="Profile"
-                        android:textSize="24sp"/>
+                        android:textColor="#009587"
+                        android:textSize="24sp" />
                     <ImageView
                         android:id="@+id/profileImageView"
                         android:layout_width="75dp"
@@ -100,6 +109,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
                         android:id="@+id/textView4"
                         android:layout_width="wrap_content"
@@ -107,7 +117,9 @@
                         android:layout_below="@id/imageView3"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/bree_serif"
                         android:text="Diet"
+                        android:textColor="#009587"
                         android:textSize="24sp" />
                     <ImageView
                         android:id="@+id/imageView3"
@@ -138,6 +150,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
                         android:id="@+id/textView6"
                         android:layout_width="wrap_content"
@@ -145,7 +158,9 @@
                         android:layout_below="@id/bus1"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/bree_serif"
                         android:text="Supplement"
+                        android:textColor="#009587"
                         android:textSize="24sp" />
                     <ImageView
                         android:id="@+id/bus1"
@@ -165,6 +180,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
                         android:id="@+id/textView7"
                         android:layout_width="wrap_content"
@@ -172,7 +188,9 @@
                         android:layout_below="@id/train"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/bree_serif"
                         android:text="Excercise"
+                        android:textColor="#009587"
                         android:textSize="24sp" />
                     <ImageView
                         android:id="@+id/train"
@@ -202,6 +220,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
                         android:id="@+id/textView8"
                         android:layout_width="wrap_content"
@@ -209,7 +228,9 @@
                         android:layout_below="@id/cycle"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/bree_serif"
                         android:text="Support"
+                        android:textColor="#009587"
                         android:textSize="24sp" />
                     <ImageView
                         android:id="@+id/cycle"
@@ -229,6 +250,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
                         android:id="@+id/logoutTextView"
                         android:layout_width="wrap_content"
@@ -236,7 +258,9 @@
                         android:layout_below="@id/logoutimageView"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/bree_serif"
                         android:text="Log Out"
+                        android:textColor="#009587"
                         android:textSize="24sp" />
                     <ImageView
                         android:id="@+id/logoutimageView"

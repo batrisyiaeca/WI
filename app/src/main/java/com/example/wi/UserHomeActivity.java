@@ -1,6 +1,7 @@
 package com.example.wi;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +25,7 @@ public class UserHomeActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     UserSupplementAdapter userSupplementAdapter;
     List<SupplementModel> supplementModels;
-    Button search;
+    Button search, btnBack;
     EditText txtSearch;
 
     @Override
@@ -34,6 +35,7 @@ public class UserHomeActivity extends AppCompatActivity {
 
         search = findViewById(R.id.btnSearch);
         txtSearch = findViewById(R.id.txtSearch);
+        btnBack = findViewById(R.id.btnBack);
 
         recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -49,6 +51,9 @@ public class UserHomeActivity extends AppCompatActivity {
 
             finSearch(getSearch);
         });
+
+        btnBack.setOnClickListener(v -> startActivity(new Intent(UserHomeActivity.this,home.class)));
+
 
     }
 
