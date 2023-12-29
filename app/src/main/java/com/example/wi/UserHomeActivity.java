@@ -33,7 +33,7 @@ public class UserHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_home);
 
-        search = findViewById(R.id.btnSearch);
+        //search = findViewById(R.id.btnSearch);
         txtSearch = findViewById(R.id.txtSearch);
         btnBack = findViewById(R.id.btnBack);
 
