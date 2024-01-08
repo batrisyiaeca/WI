@@ -27,14 +27,14 @@
 
         <EditText
             android:id="@+id/txtSearch"
-            android:layout_width="300dp"
+            android:layout_width="267dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/border_box"
             android:hint="Search"
             android:paddingStart="8dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:layout_height="45dp"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/border_box"/>
+            android:textColorHint="@color/black" />
 
         <Button
             android:id="@+id/btnSearch"

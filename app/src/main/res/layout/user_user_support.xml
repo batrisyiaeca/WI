@@ -85,7 +85,7 @@
 
     <TextView
         android:id="@+id/contact"
-        android:layout_width="171dp"
+        android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginTop="-50dp"
         android:fontFamily="@font/bree_serif"
@@ -93,7 +93,7 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintHorizontal_bias="0.306"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.643" />

@@ -15,6 +15,21 @@
         android:theme="@style/Theme.WI"
         tools:targetApi="31">
         <activity
+            android:name=".UserExerciseInfo"
+            android:exported="false" />
+        <activity
+            android:name=".UserExerciseDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".AdminUpdateExercise"
+            android:exported="false" />
+        <activity
+            android:name=".AddNewExercise"
+            android:exported="false" />
+        <activity
+            android:name=".Exercise"
+            android:exported="false" />
+        <activity
             android:name=".UserGuide"
             android:exported="false" />
         <activity
@@ -65,20 +80,27 @@
         <activity
             android:name=".AdminUpdateSupplementActivity"
             android:exported="false" />
-        <activity android:name=".AddHealthInfoActivity"
-            android:exported="false"/>
-        <activity android:name=".ManageHealthInfoActivity"
-            android:exported="false"/>
-        <activity android:name=".EditHealthInfoActivity"
-            android:exported="false"/>
-        <activity android:name=".AddDietDetailsActivity"
-            android:exported="false"/>
-        <activity android:name=".EditDietDetailsActivity"
-            android:exported="false"/>
-        <activity android:name=".ViewDietDetailsActivity"
-            android:exported="false"/>
-        <activity android:name=".AddPrescriptionDateActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".AddHealthInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ManageHealthInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditHealthInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddDietDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditDietDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewDietDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddPrescriptionDateActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

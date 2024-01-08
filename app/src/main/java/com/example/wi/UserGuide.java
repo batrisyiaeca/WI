@@ -25,7 +25,7 @@ public class UserGuide extends AppCompatActivity {
         videoBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String youtubeID = "6nVWzfdOLkI";
+                String youtubeID = "dTFQv9uHcrA";
 
                 Intent intent = new Intent(
                         Intent.ACTION_VIEW,

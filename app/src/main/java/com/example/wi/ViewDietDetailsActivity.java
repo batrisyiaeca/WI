@@ -60,14 +60,14 @@ public class ViewDietDetailsActivity extends AppCompatActivity {
                 Intent intent = new Intent(ViewDietDetailsActivity.this, EditDietDetailsActivity.class);
 
                 // Get the current diet details
-                String breakfastRecommendation = breakfastText.getText().toString();
-                String lunchRecommendation = lunchText.getText().toString();
-                String dinnerRecommendation = dinnerText.getText().toString();
+                String breakfast = breakfastText.getText().toString();
+                String lunch = lunchText.getText().toString();
+                String dinner = dinnerText.getText().toString();
 
                 // Pass data to the editing activity
-                intent.putExtra("breakfast", breakfastRecommendation);
-                intent.putExtra("lunch", lunchRecommendation);
-                intent.putExtra("dinner", dinnerRecommendation);
+                intent.putExtra("breakfast", breakfast);
+                intent.putExtra("lunch", lunch);
+                intent.putExtra("dinner", dinner);
 
                 startActivity(intent);
             }
@@ -105,9 +105,13 @@ public class ViewDietDetailsActivity extends AppCompatActivity {
     }
 
     private void updateUI(String breakfast, String lunch, String dinner) {
+        breakfastText.setText(breakfast);
+        lunchText.setText(lunch);
+        dinnerText.setText(dinner);
 
-        breakfastRecommendation.setText(breakfast);
-        lunchRecommendation.setText(lunch);
-        dinnerRecommendation.setText(dinner);
+        String recommendation = "Insert Recommendation";
+        breakfastRecommendation.setText(recommendation);
+        lunchRecommendation.setText(recommendation);
+        dinnerRecommendation.setText(recommendation);
     }
 }

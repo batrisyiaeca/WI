@@ -151,11 +151,6 @@ public class profile extends AppCompatActivity {
     }
 
     private void showPasswordResetDialog() {
-        final EditText resetPassword = new EditText(this);
-        AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(this);
-        passwordResetDialog.setTitle("Reset password?");
-        passwordResetDialog.setMessage("Enter New Password > 6 characters long");
-        passwordResetDialog.setView(resetPassword);
 
         resetPassLocal.setOnClickListener(new View.OnClickListener() {
             @Override
