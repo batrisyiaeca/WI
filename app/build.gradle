@@ -28,6 +28,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+
+
+        viewBinding {
+            enabled = true
+        }
+
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -91,6 +99,8 @@ dependencies {
     implementation 'com.orhanobut:dialogplus:1.11@aar'
     implementation platform('com.google.firebase:firebase-bom:32.7.0')
     implementation 'com.google.firebase:firebase-analytics'
+    //implementation 'com.google.android.material:material:1.4.0'
+
 
 
 }

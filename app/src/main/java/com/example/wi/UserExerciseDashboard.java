@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -28,11 +29,14 @@ public class UserExerciseDashboard extends AppCompatActivity {
     Button search, btnBack;
     EditText txtSearch;
 
+    FloatingActionButton reminder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_exercise_dashboard);
 
+        reminder = findViewById(R.id.btnReminder);
         search = findViewById(R.id.btnSearch);
         txtSearch = findViewById(R.id.txtSearch);
         btnBack = findViewById(R.id.btnBack); // Add this line
@@ -50,6 +54,8 @@ public class UserExerciseDashboard extends AppCompatActivity {
             String getSearch = txtSearch.getText().toString().trim();
             finSearch(getSearch);
         });
+
+        reminder.setOnClickListener(v -> startActivity(new Intent(UserExerciseDashboard.this,MainReminder.class)));
 
         btnBack.setOnClickListener(v -> startActivity(new Intent(UserExerciseDashboard.this, home.class)));
     }
